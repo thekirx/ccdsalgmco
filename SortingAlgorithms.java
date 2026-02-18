@@ -138,14 +138,9 @@ public class SortingAlgorithms {
      * records
      */
 
-    /*
-     * Bubble Sort has been removed per project requirements.  The additional sorting
-     * algorithm provided in this class is Quick Sort.
-     */
-
     /**
-     * Quick Sort implementation provided as the additional sorting algorithm.  It
-     * sorts the array of records in ascending order based on their ID numbers
+     * Quick Sort implementation provided as the additional sorting algorithm.  
+     * It sorts the array of records in ascending order based on their ID numbers
      * and tracks the number of key operations performed.
      *
      * @param arr the array to be sorted
@@ -164,12 +159,6 @@ public class SortingAlgorithms {
      * @param high ending index of the sub-array
      */
     private void quickSortHelper(Record[] arr, int low, int high) {
-        /*
-         * To avoid deep recursion and potential StackOverflowError on nearly sorted or
-         * reverse‑ordered inputs, always recurse on the smaller partition and
-         * iteratively process the larger one (tail‑call elimination). This limits
-         * recursion depth to O(log n) regardless of pivot quality.
-         */
         while (low < high) {
             operationCount++; // comparison for loop condition
             int pi = partition(arr, low, high);
@@ -221,3 +210,4 @@ public class SortingAlgorithms {
         return i + 1;
     }
 }
+
