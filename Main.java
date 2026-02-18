@@ -53,9 +53,9 @@ public class Main {
                 sort.mergeSort(arr, 0, size - 1);
             });
 
-            // Test Bubble Sort
-            runBenchmark("Bubble Sort", originalData, n, sorter, (arr, size, sort) -> {
-                sort.bubbleSort(arr, size);
+            // Test Quick Sort
+            runBenchmark("Quick Sort", originalData, n, sorter, (arr, size, sort) -> {
+                sort.quickSort(arr, size);
             });
 
             System.out.println("================================================================================\n");
