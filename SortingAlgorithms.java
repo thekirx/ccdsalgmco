@@ -164,4 +164,82 @@ public class SortingAlgorithms {
             }
         }
     }
+
+    /**
+     * Quick Sort implementation to replace Bubble Sort as the additional sorting
+     * algorithm. This method sorts the array of records in ascending order based
+     * on their ID numbers and tracks the number of operations performed.
+     *
+     * @param arr the array to be sorted
+     * @param n   the number of elements in the array
+     */
+    public void quickSort(Record[] arr, int n) {
+        quickSortHelper(arr, 0, n - 1);
+    }
+
+    /**
+     * Recursive helper method for Quick Sort. It partitions the array and
+     * recursively sorts the sub-arrays.
+     *
+     * @param arr the array to sort
+     * @param low starting index of the sub-array
+     * @param high ending index of the sub-array
+     */
+    private void quickSortHelper(Record[] arr, int low, int high) {
+        /*
+         * To avoid deep recursion and potential StackOverflowError on nearly sorted or
+         * reverse‑ordered inputs, always recurse on the smaller partition and
+         * iteratively process the larger one (tail‑call elimination). This limits
+         * recursion depth to O(log n) regardless of pivot quality.
+         */
+        while (low < high) {
+            operationCount++; // comparison for loop condition
+            int pi = partition(arr, low, high);
+            // Recursively sort the smaller partition first
+            if (pi - low < high - pi) {
+                // Left partition is smaller
+                quickSortHelper(arr, low, pi - 1);
+                // Iteratively sort the right partition
+                low = pi + 1;
+            } else {
+                // Right partition is smaller
+                quickSortHelper(arr, pi + 1, high);
+                // Iteratively sort the left partition
+                high = pi - 1;
+            }
+        }
+    }
+
+    /**
+     * Partition method used by Quick Sort. It places the pivot element at its
+     * correct position and rearranges elements smaller than the pivot to the
+     * left and larger ones to the right. Tracks operations for analysis.
+     *
+     * @param arr the array to partition
+     * @param low starting index for the partition
+     * @param high pivot index
+     * @return the index of the pivot element after partitioning
+     */
+    private int partition(Record[] arr, int low, int high) {
+        Record pivot = arr[high];
+        operationCount++; // pivot assignment
+        int i = low - 1;
+        operationCount++; // assignment
+        for (int j = low; j <= high - 1; j++) {
+            operationCount++; // comparison
+            if (arr[j].getIdNumber() <= pivot.getIdNumber()) {
+                i++;
+                operationCount++; // increment
+                Record temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                operationCount += 3; // swap operations
+            }
+        }
+        Record temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+        operationCount += 3; // final swap
+        return i + 1;
+    }
 }
