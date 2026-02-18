@@ -138,37 +138,15 @@ public class SortingAlgorithms {
      * records
      */
 
-    // Bubble Sort with swapped optimization
-    public void bubbleSort(Record[] arr, int n) {
-        for (int i = 0; i < n - 1; i++) {
-            boolean swapped = false;
-            operationCount++; // assignment
-
-            // Last i elements are already in place
-            for (int j = 0; j < n - i - 1; j++) {
-                operationCount++; // comparison
-                if (arr[j].getIdNumber() > arr[j + 1].getIdNumber()) {
-                    // Swap arr[j] and arr[j+1]
-                    Record temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                    swapped = true;
-                    operationCount += 4; // 3 for swap + 1 for boolean assignment
-                }
-            }
-
-            // If no swapping occurred, array is sorted
-            operationCount++; // comparison for if
-            if (!swapped) {
-                break;
-            }
-        }
-    }
+    /*
+     * Bubble Sort has been removed per project requirements.  The additional sorting
+     * algorithm provided in this class is Quick Sort.
+     */
 
     /**
-     * Quick Sort implementation to replace Bubble Sort as the additional sorting
-     * algorithm. This method sorts the array of records in ascending order based
-     * on their ID numbers and tracks the number of operations performed.
+     * Quick Sort implementation provided as the additional sorting algorithm.  It
+     * sorts the array of records in ascending order based on their ID numbers
+     * and tracks the number of key operations performed.
      *
      * @param arr the array to be sorted
      * @param n   the number of elements in the array
