@@ -2,10 +2,10 @@ import java.util.Arrays;
 
 public class Main {
 
-    // Number of runs for averaging
+    // for averaging
     private static final int NUM_RUNS = 5;
 
-    // Dataset file paths
+    // File paths ng mga dataset
     private static final String[] DATASETS = {
         "data/random100.txt",
         "data/random25000.txt",
@@ -28,7 +28,7 @@ public class Main {
             System.out.println("Dataset: " + datasetPath);
             System.out.println("--------------------------------------------------------------------------------");
 
-            // Read the original data once
+            // read original data ng isang beses lang
             Record[] originalData = fileReader.readFile(datasetPath);
             if (originalData == null) {
                 System.err.println("Failed to load dataset: " + datasetPath);
@@ -62,7 +62,7 @@ public class Main {
         }
     }
 
-    // Functional interface for sorting algorithm execution
+    // Functional interface para sa pag-execute ng sorting algorithm
     @FunctionalInterface
     interface SortExecutor {
         void execute(Record[] arr, int n, SortingAlgorithms sorter);
@@ -77,13 +77,13 @@ public class Main {
         System.out.println("  " + algorithmName + ":");
 
         for (int run = 0; run < NUM_RUNS; run++) {
-            // Create a fresh copy of the original unsorted data
+            // Gumawa ng fresh copy ng original unsorted data
             Record[] dataCopy = Arrays.copyOf(originalData, n);
 
-            // Reset operation counter
+            // I-reset yung operation counter
             sorter.resetCount();
 
-            // Measure execution time (excluding file reading/printing)
+            // I-measure yung execution time (hindi kasama file reading/printing)
             long startTime = System.currentTimeMillis();
             executor.execute(dataCopy, n, sorter);
             long endTime = System.currentTimeMillis();
@@ -94,7 +94,7 @@ public class Main {
             totalTime += executionTime;
             totalOperations += operationCount;
 
-            // Verify the array is sorted
+            // I-verify kung sorted na yung array
             if (!isSorted(dataCopy)) {
                 allSorted = false;
                 System.err.println("    WARNING: Run " + (run + 1) + " did not produce sorted output!");
@@ -110,7 +110,7 @@ public class Main {
         System.out.println();
     }
 
-    // Helper method to verify if array is sorted in ascending order by ID
+    // Helper method para i-check kung sorted na yung array in ascending order by ID
     private static boolean isSorted(Record[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             if (arr[i].getIdNumber() > arr[i + 1].getIdNumber()) {

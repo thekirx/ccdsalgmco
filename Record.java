@@ -1,17 +1,16 @@
-/* This is a class to represent a single record.
- * You are NOT allowed to modify this class.
+/* Itong class na 'to para  sa isang record.
  */
 
 public class Record {
-    private String name; // The name of the person
-    private int idNumber; // The ID number of the person
+    private String name; // Yung name ng tao
+    private int idNumber; // Yung ID number ng tao
 
     public Record(String name, int idNumber) {
         this.name = name;
         this.idNumber = idNumber;
     }
 
-    /* Getters */
+    /* Getters lang 'to */
     public String getName() {
         return name;
     }
@@ -20,8 +19,5 @@ public class Record {
         return idNumber;
     }
 
-    /*
-     * This class has intentionally no setters to
-     * prevent modification of the data once initialized.
-     */
+   
 }
